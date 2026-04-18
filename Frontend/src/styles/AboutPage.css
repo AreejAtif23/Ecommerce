@@ -1,0 +1,29 @@
+/* src/pages/AboutPage.css */
+.about-page h1 {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.about-content {
+  background: white;
+  padding: 3rem;
+  border-radius: 30px;
+  box-shadow: var(--shadow);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.about-content h3 {
+  margin: 1.5rem 0 0.5rem;
+  color: var(--primary);
+}
+
+.about-content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.about-content li {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+}

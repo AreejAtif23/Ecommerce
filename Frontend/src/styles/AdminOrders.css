@@ -1,0 +1,7 @@
+/* src/pages/admin/AdminOrders.css */
+.admin-orders {
+  background: white;
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+}

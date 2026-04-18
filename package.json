@@ -1,0 +1,18 @@
+{
+  "name": "ecommerce",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "initial-server": "cd Backend && npm install",
+    "start-server": "cd Backend && node app.js",
+    "install-client": "cd Frontend && npm install",
+    "build-client": "cd Frontend && npm run build",
+    "start-client": "cd Frontend && npm run dev"
+
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
