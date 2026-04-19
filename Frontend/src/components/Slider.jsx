@@ -1,4 +1,4 @@
-// src/components/Slider.jsx
+
 import React, { useState, useEffect } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import '../styles/Slider.css';
