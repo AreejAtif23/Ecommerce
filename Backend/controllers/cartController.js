@@ -16,7 +16,6 @@ export const addToCart = async (req, res) => {
   try {
     const { productId, variantId, size, color, quantity } = req.body;
 
-    // Validation
     if (!productId || !variantId || !quantity) {
       return res.status(400).json({ message: 'Missing required fields: productId, variantId, quantity', success: false });
     }
@@ -26,7 +25,6 @@ export const addToCart = async (req, res) => {
       return res.status(404).json({ message: 'Product not found', success: false });
     }
 
-    // Find the variant by _id (safe way)
     const variant = product.variants.find(v => v._id.toString() === variantId);
     if (!variant) {
       return res.status(404).json({ message: 'Variant not found', success: false });
@@ -41,7 +39,6 @@ export const addToCart = async (req, res) => {
       cart = await Cart.create({ user: req.user.id, items: [] });
     }
 
-    // Check if same product + variant already in cart
     const existingItemIndex = cart.items.findIndex(
       item => item.productId.toString() === productId && item.variantId.toString() === variantId
     );
