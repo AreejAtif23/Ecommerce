@@ -1,4 +1,4 @@
-// src/components/AdminLayout.jsx
+
 import React, { useState } from 'react';
 import { Outlet, Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -8,7 +8,7 @@ import '../styles/AdminLayout.css';
 const AdminLayout = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
-  const [sidebarOpen, setSidebarOpen] = useState(true); // Start open on desktop
+  const [sidebarOpen, setSidebarOpen] = useState(true); 
 
   const handleLogout = () => {
     logout();
@@ -21,12 +21,9 @@ const AdminLayout = () => {
 
   return (
     <div className="admin-layout">
-      {/* Hamburger button for mobile/tablet */}
       <button className="sidebar-toggle" onClick={toggleSidebar}>
         {sidebarOpen ? <FaTimes /> : <FaBars />}
       </button>
-
-      {/* Sidebar */}
       <aside className={`admin-sidebar ${sidebarOpen ? 'open' : 'closed'}`}>
         <div className="sidebar-header">
           <h2>Admin Panel</h2>
@@ -40,7 +37,6 @@ const AdminLayout = () => {
         </nav>
       </aside>
 
-      {/* Main content */}
       <div className={`admin-content ${sidebarOpen ? 'shifted' : 'full'}`}>
         <header className="admin-header">
           <span>Welcome, {user?.name}</span>
