@@ -66,7 +66,6 @@ export const createProduct = async (req, res) => {
   try {
     const { name, description, price, category, images, variants, featured, newArrival } = req.body;
 
-    // Validation
     if (!name || !description || !price || !category || !images || images.length === 0) {
       return res.status(400).json({
         success: false,
@@ -74,7 +73,6 @@ export const createProduct = async (req, res) => {
       });
     }
 
-    // Check category enum
     const allowedCategories = ['Shoes', 'Clothes', 'Watches', 'Purse/Wallet', 'Cosmetics'];
     if (!allowedCategories.includes(category)) {
       return res.status(400).json({
@@ -83,7 +81,6 @@ export const createProduct = async (req, res) => {
       });
     }
 
-    // Price validation
     if (price < 0) {
       return res.status(400).json({
         success: false,
@@ -91,7 +88,6 @@ export const createProduct = async (req, res) => {
       });
     }
 
-    // Variants validation (optional but if provided, check required fields)
     if (variants && Array.isArray(variants)) {
       for (const variant of variants) {
         if (!variant.size || !variant.color || variant.stock === undefined) {
@@ -109,7 +105,6 @@ export const createProduct = async (req, res) => {
       }
     }
 
-    // Create product
     const product = await Product.create({
       name,
       description,
@@ -126,7 +121,7 @@ export const createProduct = async (req, res) => {
       product,
     });
   } catch (error) {
-    // Handle duplicate SKU error
+
     if (error.code === 11000) {
       return res.status(400).json({
         success: false,
@@ -144,11 +139,9 @@ export const updateProduct = async (req, res) => {
   try {
     const { id } = req.params;
     
-    // Debug logging
     console.log('Update request received for ID:', id);
     console.log('Request body:', req.body);
     
-    // Validate ID format
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return res.status(400).json({ 
         message: 'Invalid product ID format', 
@@ -156,7 +149,6 @@ export const updateProduct = async (req, res) => {
       });
     }
     
-    // Find and update in one operation
     const updatedProduct = await Product.findByIdAndUpdate(
       id,
       { $set: req.body },
@@ -181,7 +173,6 @@ export const updateProduct = async (req, res) => {
   }
 };
 
-// Delete product
 export const deleteProduct = async (req, res) => {
   try {
     const { id } = req.params;
