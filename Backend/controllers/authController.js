@@ -11,12 +11,11 @@ export const registerUser = async (req, res) => {
       return res.status(400).json({ message: 'User already exists', success: false });
     }
 
-    // Create user – mark as verified immediately
     const user = await User.create({
       name,
       email,
       password,
-      isVerified: true,           // auto‑verify
+      isVerified: true,     
       verificationToken: undefined
     });
 
