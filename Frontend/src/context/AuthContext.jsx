@@ -1,4 +1,4 @@
-// src/context/AuthContext.jsx
+
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { register as registerAPI, login as loginAPI, getProfile, changePassword as changePasswordAPI } from '../services/api';
 
@@ -32,13 +32,12 @@ export const AuthProvider = ({ children }) => {
     setUser(data.user);
     return data;
   };
-
-// Inside AuthContext.jsx
+  
 const login = async (email, password) => {
   const { data } = await loginAPI({ email, password });
   localStorage.setItem('token', data.token);
   setUser(data.user);
-  return data; // contains { token, user }
+  return data; 
 };
 
   const logout = () => {
