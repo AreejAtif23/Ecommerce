@@ -1,4 +1,4 @@
-// src/context/CartContext.jsx
+
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useAuth } from './AuthContext';
 import { getCart, addToCart, updateCartItem, removeCartItem, clearCart as clearCartAPI } from '../services/api';
@@ -12,7 +12,6 @@ export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch cart when user logs in
   useEffect(() => {
     if (user) {
       fetchCart();
@@ -26,7 +25,6 @@ export const CartProvider = ({ children }) => {
     try {
       setLoading(true);
       const { data } = await getCart();
-      // Transform backend cart items to frontend format
       const items = data.cart.items.map(item => ({
         id: item._id,
         productId: item.productId._id,
@@ -56,7 +54,7 @@ export const CartProvider = ({ children }) => {
       quantity
     };
     const { data } = await addToCart(payload);
-    // Refresh cart after add
+
     await fetchCart();
     return data;
   };
